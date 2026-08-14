@@ -26,11 +26,16 @@ World Bible writes using a large language model, and you choose which one.
 | **[Ollama](https://ollama.com) on your machine** | ~1 hour per world | Free | Nothing leaves your computer |
 | **Anthropic / OpenAI / Gemini** | Minutes per world | Pay per world | Prompts go to the provider |
 
-For the local option, install Ollama and pull a model:
+For the local option, install Ollama and pull **both** of these — the app uses two models,
+one to write and one to check the writing:
 
 ```
 ollama pull llama3.1:8b
+ollama pull deepseek-r1:8b
 ```
+
+Together they need about 10 GB of disk. Using the same model for both roles was measured
+producing visibly worse prose *and* slower builds, so it is worth pulling the second one.
 
 For the hosted option, paste an API key during setup. You can change this at any time, and
 mix the two — a fast hosted Generator with a local Proofreader, or the reverse.

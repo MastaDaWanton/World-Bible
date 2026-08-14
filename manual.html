@@ -84,9 +84,12 @@
 two choices.</p>
 
 <h3>Run it on your own machine — free and private, but slow</h3>
-<p>Install <strong>Ollama</strong> from <code>ollama.com</code>, then pull a model. From a
-terminal:</p>
-<p><code>ollama pull llama3.1:8b</code></p>
+<p>Install <strong>Ollama</strong> from <code>ollama.com</code>, then pull <strong>both</strong>
+of these from a terminal:</p>
+<p><code>ollama pull llama3.1:8b</code><br>
+<code>ollama pull deepseek-r1:8b</code></p>
+<p>The app uses two models, not one — see <a href="#models">section 3</a> for why the second
+one matters. Together they need roughly 10 GB of disk.</p>
 <p>Nothing you write ever leaves your computer, and it costs nothing to run. The trade is
 speed: your graphics card is doing work that a data centre would otherwise do.</p>
 
@@ -130,6 +133,15 @@ it, it stays deleted — it will not reappear next time you launch.</p>
 is <code>llama3.1:8b</code> as Generator and <code>deepseek-r1:8b</code> as Proofreader.</p>
 
 <div class="note">
+  <strong>Do not use the same model for both.</strong> It is tempting, and it was measured:
+  running <code>llama3.1:8b</code> as Proofreader produced flat description with no cause and
+  no cost, six of sixteen paragraphs opening the same way, and in one case a nation trading
+  with itself. It was also <em>slower</em> overall, because weak drafts score low and burn
+  every retry. <code>deepseek-r1:8b</code> reasons about the draft before judging it, and that
+  is the difference.
+</div>
+
+<div class="note">
   <strong>The Proofreader earns its keep.</strong> It is not a spell-check pass — it reads
   each draft against the world's established facts, scores it, and rewrites the weak parts.
   Drafts that score badly are sent back to be rewritten. Using a weaker model here shows up
@@ -140,20 +152,31 @@ is <code>llama3.1:8b</code> as Generator and <code>deepseek-r1:8b</code> as Proo
 
 <h2 id="make">4. Making a world</h2>
 
-<p>Click <strong>New World</strong>. You will be asked for:</p>
+<p>Click <strong>New World</strong> and work through the steps.</p>
 
-<ul>
-  <li><strong>A premise</strong> — rolled for you across several axes. Reroll until something
-      catches your eye. This becomes a hard constraint every part of the world must obey,
-      which is what stops every generated world feeling like the same world.</li>
-  <li><strong>A name</strong> — used exactly as you type it, everywhere.</li>
-  <li><strong>Physical laws</strong> and <strong>the exceptional, in detail</strong> — how
-      your world works, and what breaks those rules.</li>
-  <li><strong>An export folder</strong> — where finished books are written.</li>
-</ul>
+<h3>The premise</h3>
+<p>Rolled for you across six independent axes — physical setting, inhabitants, technology,
+the exceptional, society and narrative voice. Reroll until something catches your eye. This
+becomes a hard constraint every part of the world must obey, which is what stops every
+generated world feeling like the same world.</p>
 
-<p>Then the app builds the world's foundation. Watch the work panel for progress; you can
-keep browsing while it runs.</p>
+<p>Each axis also has an <strong>Or describe your own</strong> box. Leave it blank and the
+rolled option is used; type in it and yours is used instead. Your world's
+<strong>name</strong> is on this step too, and is used exactly as you type it, everywhere.</p>
+
+<h3>How much to generate — and what of each</h3>
+<p>Continents, peoples, nations, settlements and people each get their own step, with a
+count and a prompt box for <em>every entity that count will produce</em>. Ask for three
+continents and you get three boxes, so you can say what you want of each one individually:</p>
+
+<div class="note">
+  <strong>Every one of those boxes is optional.</strong> Anything left blank is invented to
+  fit the premise. You are never required to fill them in, and nothing is locked afterwards
+  — any entity can be rewritten later with an instruction of your own.
+</div>
+
+<p>Then the app builds the world. Watch the work panel for progress; you can keep browsing
+while it runs.</p>
 
 <h2 id="grow">5. Growing it</h2>
 
@@ -175,14 +198,35 @@ arrive already knowing where they belong.</p>
 
 <h2 id="edit">6. Editing and fixing</h2>
 
+<p>Every section of an entry has its own <strong>Edit</strong> button. It opens a card over
+the page where that one section can be:</p>
+
 <ul>
-  <li><strong>Edit</strong> — change any text by hand. It is your world.</li>
-  <li><strong>Regenerate</strong> — rewrite an entity from scratch. Its name and place in the
-      world are kept.</li>
-  <li><strong>Restore</strong> — every change keeps a history. Nothing is lost.</li>
+  <li><strong>Rewritten by hand</strong> — it is your world.</li>
+  <li><strong>Rewritten by the model</strong>, with a box underneath to say what you want:
+      <em>"make the water tax the reason the clans split, and name the official who collects
+      it."</em> Only that section changes; everything else in the entry is left alone.</li>
+  <li><strong>Locked</strong> — a locked section is preserved word-for-word when the entity
+      is regenerated, so the parts you are happy with survive.</li>
+</ul>
+
+<p>Beside it, <strong>More detail</strong> adds a further paragraph to that section rather
+than replacing it — press it repeatedly to keep drilling in.</p>
+
+<p>For the whole entry:</p>
+
+<ul>
+  <li><strong>Regenerate</strong> — rewrite it from scratch. Its name and place in the world
+      are kept, and locked sections survive.</li>
   <li><strong>Rename</strong> — renames the entity <em>and</em> every mention of it across
-      the whole world, including possessives. Its folder is renamed too.</li>
+      the whole world, including possessives. Its folder is renamed too. If another entity
+      shares the name, it says so and asks before going ahead, because the change would
+      rename both.</li>
   <li><strong>Move</strong> — relocate an entity to a different parent; links follow it.</li>
+  <li><strong>Edit details</strong> — cross-reference links, and a settlement's trade goods
+      and scale.</li>
+  <li><strong>Restore</strong> — every change above keeps a history snapshot. Nothing is
+      lost, including your own hand edits.</li>
 </ul>
 
 <h2 id="chronicle">7. The chronicle</h2>
