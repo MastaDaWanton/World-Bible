@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Bible — User Manual</title>
+<style>
+  :root {
+    --ink: #1a1614; --paper: #f6f1e7; --rule: #cdbfa6;
+    --accent: #7a4b2a; --soft: #5c5348; --panel: #efe7d8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8e2d6; --paper: #16130f; --rule: #4a4034;
+      --accent: #d9a066; --soft: #a89c8a; --panel: #1f1a15;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  h1 {
+    font-size: 2.4rem; line-height: 1.15; margin: 0 0 .3rem;
+    letter-spacing: -.01em;
+  }
+  .sub { color: var(--soft); font-style: italic; margin: 0 0 2.5rem; }
+  h2 {
+    font-size: 1.35rem; margin: 3rem 0 .75rem;
+    padding-bottom: .35rem; border-bottom: 1px solid var(--rule);
+  }
+  h3 { font-size: 1.05rem; margin: 1.75rem 0 .4rem; color: var(--accent); }
+  p, li { margin: .6rem 0; }
+  ul, ol { padding-left: 1.3rem; }
+  code {
+    font: .875em ui-monospace, 'Cascadia Code', Consolas, monospace;
+    background: var(--panel); padding: .12em .4em; border-radius: 3px;
+  }
+  .note {
+    background: var(--panel); border-left: 3px solid var(--accent);
+    padding: .85rem 1.1rem; margin: 1.25rem 0; border-radius: 0 4px 4px 0;
+  }
+  .note strong { color: var(--accent); }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--rule); }
+  th { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--soft); }
+  .toc { columns: 2; column-gap: 2rem; font-size: .95rem; }
+  .toc a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--rule); }
+  .toc a:hover { color: var(--accent); }
+  footer { margin-top: 4rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+           color: var(--soft); font-size: .875rem; }
+  @media print {
+    body { background: #fff; color: #000; }
+    .wrap { max-width: none; padding: 0; }
+    h2 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>World Bible</h1>
+<p class="sub">Generate and read complete world bibles, entirely on your own machine.</p>
+
+<div class="toc">
+  <a href="#start">1. Before you start</a><br>
+  <a href="#first">2. Your first run</a><br>
+  <a href="#models">3. Choosing your models</a><br>
+  <a href="#make">4. Making a world</a><br>
+  <a href="#grow">5. Growing it</a><br>
+  <a href="#edit">6. Editing and fixing</a><br>
+  <a href="#chronicle">7. The chronicle</a><br>
+  <a href="#export">8. Exporting your book</a><br>
+  <a href="#files">9. Where your work lives</a><br>
+  <a href="#speed">10. Making it faster</a><br>
+  <a href="#trouble">11. Troubleshooting</a>
+</div>
+
+<h2 id="start">1. Before you start</h2>
+
+<p>World Bible writes with a large language model. You need to give it one, and you have
+two choices.</p>
+
+<h3>Run it on your own machine — free and private, but slow</h3>
+<p>Install <strong>Ollama</strong> from <code>ollama.com</code>, then pull a model. From a
+terminal:</p>
+<p><code>ollama pull llama3.1:8b</code></p>
+<p>Nothing you write ever leaves your computer, and it costs nothing to run. The trade is
+speed: your graphics card is doing work that a data centre would otherwise do.</p>
+
+<h3>Or use a hosted service — much faster, costs money</h3>
+<p>World Bible also speaks to Anthropic, OpenAI and Google Gemini. You supply an API key
+during setup. Your prompts are sent to that company's servers and you pay per world, but
+generation stops being something you wait an hour for.</p>
+
+<div class="note">
+  <strong>Speed is your choice of model, not the app.</strong> On a local 8B model expect
+  roughly two minutes per entity, so a world of thirty entities takes about an hour. Point
+  the same app at a hosted model and that world finishes in minutes. If generation feels
+  slow, that is the cost of keeping everything on your own machine — it is not a limit of
+  the app, and you can change it at any time in Settings.
+</div>
+
+<p>You can also mix the two: a hosted model as Generator for speed, a local one as
+Proofreader, or the reverse. Neither role is locked to a provider.</p>
+
+<h2 id="first">2. Your first run</h2>
+
+<p>The app opens with a finished sample world, <strong>Pangrella</strong>, already loaded.
+Nothing was generated on your machine to produce it — it ships with the app so you can see
+what a finished world looks like before committing an hour to your own.</p>
+
+<p>Read it, click through its cross-references, export it to a book, take it apart. It is
+an ordinary world in every respect: you can edit it, rename it, or delete it. If you delete
+it, it stays deleted — it will not reappear next time you launch.</p>
+
+<h2 id="models">3. Choosing your models</h2>
+
+<p>On first launch a setup wizard asks for two roles:</p>
+
+<table>
+  <tr><th>Role</th><th>What it does</th></tr>
+  <tr><td><strong>Generator</strong></td><td>Writes the prose. This is the voice of your world.</td></tr>
+  <tr><td><strong>Proofreader</strong></td><td>Scores each draft and rewrites what falls short.</td></tr>
+</table>
+
+<p>If Ollama is running, the wizard finds it and lists your installed models. A tested pairing
+is <code>llama3.1:8b</code> as Generator and <code>deepseek-r1:8b</code> as Proofreader.</p>
+
+<div class="note">
+  <strong>The Proofreader earns its keep.</strong> It is not a spell-check pass — it reads
+  each draft against the world's established facts, scores it, and rewrites the weak parts.
+  Drafts that score badly are sent back to be rewritten. Using a weaker model here shows up
+  directly in your prose as flat, repetitive description.
+</div>
+
+<p>You can change either model later in <strong>Settings</strong>.</p>
+
+<h2 id="make">4. Making a world</h2>
+
+<p>Click <strong>New World</strong>. You will be asked for:</p>
+
+<ul>
+  <li><strong>A premise</strong> — rolled for you across several axes. Reroll until something
+      catches your eye. This becomes a hard constraint every part of the world must obey,
+      which is what stops every generated world feeling like the same world.</li>
+  <li><strong>A name</strong> — used exactly as you type it, everywhere.</li>
+  <li><strong>Physical laws</strong> and <strong>the exceptional, in detail</strong> — how
+      your world works, and what breaks those rules.</li>
+  <li><strong>An export folder</strong> — where finished books are written.</li>
+</ul>
+
+<p>Then the app builds the world's foundation. Watch the work panel for progress; you can
+keep browsing while it runs.</p>
+
+<h2 id="grow">5. Growing it</h2>
+
+<p>A world is a tree, six levels deep:</p>
+
+<p style="text-align:center; font-style:italic; color:var(--soft)">
+  World → Continent → People and Nations → Cities → Characters
+</p>
+
+<p>Open any entity and use <strong>Expand</strong> to generate its children. A nation grows
+cities; a city grows characters. Each new entity inherits everything established above it,
+so a city knows the laws of its nation and the history of its continent.</p>
+
+<h3>Pinned people</h3>
+<p>As the world writes itself it names people it never describes — a general in a battle
+account, a founder in a myth. The app notices these and <strong>pins</strong> them: a queue
+of named-but-never-written figures. Create them one at a time, or all at once, and they
+arrive already knowing where they belong.</p>
+
+<h2 id="edit">6. Editing and fixing</h2>
+
+<ul>
+  <li><strong>Edit</strong> — change any text by hand. It is your world.</li>
+  <li><strong>Regenerate</strong> — rewrite an entity from scratch. Its name and place in the
+      world are kept.</li>
+  <li><strong>Restore</strong> — every change keeps a history. Nothing is lost.</li>
+  <li><strong>Rename</strong> — renames the entity <em>and</em> every mention of it across
+      the whole world, including possessives. Its folder is renamed too.</li>
+  <li><strong>Move</strong> — relocate an entity to a different parent; links follow it.</li>
+</ul>
+
+<h2 id="chronicle">7. The chronicle</h2>
+
+<p>Your world's timeline starts as one-line stubs — "The Great Drying" with a date. The
+<strong>Chronicle</strong> pass turns each into a real account: the pressure that built
+beforehand, the decisive turns within it, who is remembered for it, and what it settled.</p>
+
+<p>It is additive and resumable. Run it once, add entities later, run it again — it only
+fills in what is missing.</p>
+
+<h2 id="export">8. Exporting your book</h2>
+
+<table>
+  <tr><th>Format</th><th>Best for</th></tr>
+  <tr><td><strong>HTML</strong></td><td>Reading. A single self-contained page with working
+      cross-references, a chronology and reference cards. Open it in any browser; send it to
+      anyone.</td></tr>
+  <tr><td><strong>Word (.docx)</strong></td><td>Editing elsewhere, printing, publishing.</td></tr>
+  <tr><td><strong>Markdown</strong></td><td>Feeding into other tools, or version control.</td></tr>
+</table>
+
+<h2 id="files">9. Where your work lives</h2>
+
+<table>
+  <tr><th>What</th><th>Where</th></tr>
+  <tr><td>Your worlds</td><td><code>Documents\World Bibles</code></td></tr>
+  <tr><td>Settings and database</td><td><code>%LOCALAPPDATA%\WorldBible</code></td></tr>
+</table>
+
+<p>Worlds are plain folders of readable JSON files — not a database. To back one up, copy the
+folder. To share one, zip it. To move to a new computer, copy it across. Nothing is locked
+inside the app.</p>
+
+<div class="note">
+  <strong>Back up your worlds.</strong> A finished world is hours of generation. Copy the
+  folder somewhere safe when you finish one.
+</div>
+
+<h2 id="speed">10. Making it faster</h2>
+
+<p><strong>If you are using a hosted model, skip this section</strong> — you are already
+running as fast as the app goes. Everything below is about local models, where the work is
+happening on your own graphics card.</p>
+
+<p>With a local model, speed is almost entirely your graphics card, and the single biggest
+factor is usually heat rather than anything in this app.</p>
+
+<ul>
+  <li><strong>Check your GPU is not throttling.</strong> A card that overheats quietly drops
+      its clock speed. On one test machine, fixing case fans and undervolting the card cut
+      generation time by <strong>37%</strong> with no change to output quality.</li>
+  <li><strong>Use a model that fits in your VRAM.</strong> If the model is larger than your
+      card's memory it spills into system RAM and slows by roughly ten times.</li>
+  <li><strong>Close other GPU work</strong> — games, video editors, other AI tools.</li>
+  <li><strong>Or stop using a local model.</strong> Everything above buys you tens of
+      percent. Switching the Generator to a hosted model in Settings turns an hour into
+      minutes, and it is a two-field change — see section 1 for what you give up.</li>
+</ul>
+
+<p>Using a smaller or faster model for the Proofreader is a false economy — it scores drafts
+badly, which triggers more rewrite attempts, and the build ends up slower <em>and</em> worse.</p>
+
+<h2 id="trouble">11. Troubleshooting</h2>
+
+<h3>"Could not reach the server" or generation never starts</h3>
+<p>Ollama is probably not running. Start it and try again. You can confirm it is up by
+opening <code>http://localhost:11434</code> in a browser — it should say "Ollama is running".</p>
+
+<h3>Generation is extremely slow</h3>
+<p>See section 10. Check your model fits in VRAM, and check your card's temperature under
+load.</p>
+
+<h3>A build stopped partway</h3>
+<p>A partial world is a valid world here. Everything already written is saved. Open the
+entity that failed and regenerate it, or expand from where it stopped.</p>
+
+<h3>An entity is called the wrong name</h3>
+<p>Use <strong>Rename</strong> rather than editing the text by hand — it corrects every
+mention across the entire world, which hand-editing will miss.</p>
+
+<h3>The app will not close</h3>
+<p>If generation is still running you will be asked to confirm. Work already finished is
+saved; the entity in progress is not.</p>
+
+<footer>
+  World Bible — everything runs on your machine unless you choose otherwise.
+</footer>
+
+</div>
+</body>
+</html>
