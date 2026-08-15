@@ -152,7 +152,32 @@ is <code>llama3.1:8b</code> as Generator and <code>deepseek-r1:8b</code> as Proo
 
 <h2 id="make">4. Making a world</h2>
 
-<p>Click <strong>New World</strong> and work through the steps.</p>
+<p>Click <strong>New World</strong>. You are asked which of two things you are doing,
+because they are genuinely different jobs.</p>
+
+<h3>Route 1 — "Generate one for me"</h3>
+<p>You do not have a world in mind yet. Roll a premise, choose how much to build, and the
+AI writes the whole thing. About an hour on a local model. The rest of this section is
+about that route.</p>
+
+<h3>Route 2 — "I already have one"</h3>
+<p>You have a world in your head, or in a folder of notes, and you want help writing it
+down. Give it a name and you get an <strong>empty frame</strong>, instantly, with nothing
+invented: one entity at every tier, every section that tier expects, and a line in each
+saying what belongs there.</p>
+
+<p>From there, write your own prose into any section, or hand one section an instruction
+and let the AI write it from what you have already established. Rename "Continent" to your
+name for it and the change follows every mention. This route calls no model at all, so it
+costs nothing and takes a second.</p>
+
+<div class="note">
+  <strong>A frame has no premise until you set one</strong>, and that matters — without one,
+  anything you generate drifts toward the model's own defaults. Open the world entry and
+  use <strong>Set the premise</strong>. Every axis is optional: pin the technology level and
+  the narrative voice so generated sections match your world, and leave the rest open,
+  because you already know who lives there.
+</div>
 
 <h3>The premise</h3>
 <p>Rolled for you across six independent axes — physical setting, inhabitants, technology,
@@ -161,8 +186,27 @@ becomes a hard constraint every part of the world must obey, which is what stops
 generated world feeling like the same world.</p>
 
 <p>Each axis also has an <strong>Or describe your own</strong> box. Leave it blank and the
-rolled option is used; type in it and yours is used instead. Your world's
-<strong>name</strong> is on this step too, and is used exactly as you type it, everywhere.</p>
+rolled option is used; type in it and yours is used instead — the dropdown greys out to
+show it is no longer in play. Tick <strong>Use both</strong> to keep the option and qualify
+it with your words. Your world's <strong>name</strong> is on this step too, and is used
+exactly as you type it, everywhere.</p>
+
+<p>Tick <strong>From–to</strong> and you get a second dropdown, turning that axis into a
+span: <em>"Bronze to Renaissance, varying by region"</em>. Useful when the point of your
+world is that some places are ahead of others — a single value is enforced identically on
+every nation.</p>
+
+<div class="note">
+  <strong>Keep these short — a phrase, not a paragraph.</strong> The rolled options run
+  about 30 characters and never exceed 53, and short statements are what the generator
+  obeys as rules. Past roughly 120 characters your text stops being a constraint and gets
+  treated as <em>flavour</em>: the model borrows a phrase or two and goes back to its own
+  defaults for everything structural. The box tells you when you cross that line, and names
+  the section your longer version belongs in instead.
+</div>
+
+<p>The premise is not frozen at creation. Open the world entry at any time and change it —
+it governs everything generated from then on, and never rewrites what is already there.</p>
 
 <h3>How much to generate — and what of each</h3>
 <p>Continents, peoples, nations, settlements and people each get their own step, with a
