@@ -72,10 +72,11 @@
   <a href="#grow">5. Growing it</a><br>
   <a href="#edit">6. Editing and fixing</a><br>
   <a href="#chronicle">7. The chronicle</a><br>
-  <a href="#export">8. Exporting your book</a><br>
-  <a href="#files">9. Where your work lives</a><br>
-  <a href="#speed">10. Making it faster</a><br>
-  <a href="#trouble">11. Troubleshooting</a>
+  <a href="#map">8. The map</a><br>
+  <a href="#export">9. Exporting your book</a><br>
+  <a href="#files">10. Where your work lives</a><br>
+  <a href="#speed">11. Making it faster</a><br>
+  <a href="#trouble">12. Troubleshooting</a>
 </div>
 
 <h2 id="start">1. Before you start</h2>
@@ -282,7 +283,57 @@ beforehand, the decisive turns within it, who is remembered for it, and what it 
 <p>It is additive and resumable. Run it once, add entities later, run it again — it only
 fills in what is missing.</p>
 
-<h2 id="export">8. Exporting your book</h2>
+<h3>The worlds that come with it</h3>
+
+<p>Two finished worlds are installed the first time you run the app, so there is
+something to read before you have generated anything. <strong>Aurvantis</strong> is a
+conventional fantasy world — four continents, sixteen peoples, sixty-four towns — and is
+the one to look at if you are exporting for a game. <strong>Pangrella</strong> is smaller
+and stranger, and is the one that best shows the chronicle and the faction layers.</p>
+
+<p>Delete either of them and it stays deleted. Edit one and it is yours — an update will
+never overwrite a world you have changed.</p>
+
+<h2 id="map">8. The map</h2>
+
+<p>The <strong>Map</strong> button on a world draws it: continents, the nations inside
+them, the settlements inside those, and every trade route the synthesis pass wrote between
+them. A settlement's dot is sized by whether it is a city, a town or a village.</p>
+
+<p>Hover a place to fade everything that is not on its landmass and light the routes
+running in and out of it; the card shows what it sells and what it buys. Click it to open
+it. Drag to pan, scroll to zoom, and settlement names appear once you are close enough to
+read them — or press <em>Show all names</em> to force them on.</p>
+
+<p><strong>It is not a geography, and the page says so.</strong> Nothing in a world
+records where anything is: the schema asks for terrain, climate and biomes as prose and
+for no coordinates at all. So the map shows the two spatial things a world does record —
+what lies inside what, and what trades with what — arranged tidily. A place is not east of
+another place because the map drew it there.</p>
+
+<p>A route is left undrawn if either end names a settlement the world does not actually
+contain, and the line under the title says how many were dropped. That is usually worth
+investigating: it means the synthesis pass invented a place.</p>
+
+<h3>Inside a town</h3>
+
+<p>Open a settlement and press <strong>Places</strong>. A town is drawn as the spots inside
+it — the market, the gate, the workshops — with a line between any two you can walk
+between. Click a spot to rename it, write a line about it, or set what kind of ground it
+is; click <em>Connect</em> and then two spots to open or close a street; <em>Add a place</em>
+puts down a new one.</p>
+
+<p>A town you have never opened shows what its own words imply. A settlement whose history
+mentions a ford gets the crossing; one that exports steel gets the forge. Nothing is
+written until you press <strong>Save the map</strong>, and from then on that town is yours
+— the export carries what you drew instead of the guess, and <em>Reset</em> puts the guess
+back.</p>
+
+<p>One rule the game is strict about: a street says only that you can <em>walk</em> it,
+never how far. There is nowhere to type a distance, and a save is refused if one turns up
+in the writing.</p>
+
+<h2 id="export">9. Exporting your book</h2>
 
 <table>
   <tr><th>Format</th><th>Best for</th></tr>
@@ -291,9 +342,28 @@ fills in what is missing.</p>
       anyone.</td></tr>
   <tr><td><strong>Word (.docx)</strong></td><td>Editing elsewhere, printing, publishing.</td></tr>
   <tr><td><strong>Markdown</strong></td><td>Feeding into other tools, or version control.</td></tr>
+  <tr><td><strong>Export for play</strong></td><td>Handing the world to a game. Writes a
+      versioned JSON bundle and a SQLite database with durable ids, the relationships between
+      entities, and a play layer: settlements, cast, travel, conflicts, timeline, races and
+      situation cards.</td></tr>
 </table>
 
-<h2 id="files">9. Where your work lives</h2>
+<h3>Export for play</h3>
+<p>Pressing <strong>Export for play</strong> on a world does not write anything yet. It opens a
+review page showing what the game will receive, in the shape the game reads it: each people
+with an anatomy as a playable <em>race</em> (size and speed as words, body, senses and movement
+one sentence per line), and every <em>situation card</em> &mdash; a short list of facts the
+narrator may state as true, one per settlement with a recorded tension and a public and a
+secret card per faction.</p>
+<p>Untick anything to leave it out. Edit any line and save. Write cards of your own. A save is
+refused, with the reason, if the game would refuse it: a fact with a digit in it, or one naming a
+person or place the world does not contain. <em>Reset</em> puts back what the world itself says.
+Your edits are kept in the world, so exporting again never loses them and the world's own text is
+never changed.</p>
+<p>When it looks right, press <strong>Write the export files</strong>. Both files land in the
+world's folder. Places and resources are not part of the export yet.</p>
+
+<h2 id="files">10. Where your work lives</h2>
 
 <table>
   <tr><th>What</th><th>Where</th></tr>
@@ -310,7 +380,7 @@ inside the app.</p>
   folder somewhere safe when you finish one.
 </div>
 
-<h2 id="speed">10. Making it faster</h2>
+<h2 id="speed">11. Making it faster</h2>
 
 <p><strong>If you are using a hosted model, skip this section</strong> — you are already
 running as fast as the app goes. Everything below is about local models, where the work is
@@ -334,7 +404,7 @@ factor is usually heat rather than anything in this app.</p>
 <p>Using a smaller or faster model for the Proofreader is a false economy — it scores drafts
 badly, which triggers more rewrite attempts, and the build ends up slower <em>and</em> worse.</p>
 
-<h2 id="trouble">11. Troubleshooting</h2>
+<h2 id="trouble">12. Troubleshooting</h2>
 
 <h3>"Could not reach the server" or generation never starts</h3>
 <p>Ollama is probably not running. Start it and try again. You can confirm it is up by
