@@ -85,10 +85,22 @@
 two choices.</p>
 
 <h3>Run it on your own machine — free and private, but slow</h3>
-<p>Install <strong>Ollama</strong> from <code>ollama.com</code>, then pull <strong>both</strong>
-of these from a terminal:</p>
-<p><code>ollama pull llama3.1:8b</code><br>
-<code>ollama pull deepseek-r1:8b</code></p>
+<p>You do not have to set this up yourself. On the setup page, under <strong>The
+Generator</strong>, there is a panel called <em>Running it on this machine</em> that
+does the whole thing:</p>
+<ul>
+  <li>If <strong>Ollama</strong> is missing, <em>Install Ollama</em> downloads its
+      installer from ollama.com and opens it. You still agree to Ollama's own installer
+      — the app just saves you the trip.</li>
+  <li>If Ollama is installed but not running — the usual state after a restart — one
+      button starts it. Nothing to download.</li>
+  <li>If the models are missing, a button each fetches
+      <code>llama3.1:8b</code> and <code>deepseek-r1:8b</code>, with a progress bar.
+      They are gigabytes, so it takes a while; stopping and starting again carries on
+      from where it stopped rather than beginning again.</li>
+</ul>
+<p>If you would rather do it by hand, it is <code>ollama pull llama3.1:8b</code> and
+<code>ollama pull deepseek-r1:8b</code> in a terminal.</p>
 <p>The app uses two models, not one — see <a href="#models">section 3</a> for why the second
 one matters. Together they need roughly 10 GB of disk.</p>
 <p>Nothing you write ever leaves your computer, and it costs nothing to run. The trade is
